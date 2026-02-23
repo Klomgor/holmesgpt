@@ -125,6 +125,10 @@
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>
+         <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/confluence-mcp/</loc>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
          <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/confluence/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
@@ -217,6 +221,10 @@
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>
+         <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/kubernetes-remediation-mcp/</loc>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
          <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/kubernetes/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
@@ -245,6 +253,10 @@
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>
+         <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/prefect-mcp/</loc>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
          <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/prometheus/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
@@ -254,6 +266,10 @@
     </url>
     <url>
          <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/robusta/</loc>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
+         <loc>https://holmesgpt.dev/dev/data-sources/builtin-toolsets/sentry-mcp/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>
