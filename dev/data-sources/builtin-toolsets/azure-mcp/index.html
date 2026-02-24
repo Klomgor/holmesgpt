@@ -4923,8 +4923,11 @@
 </tbody>
 </table>
 <p><strong>Setup Script:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>curl<span class="w"> </span>-O<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/holmes-mcp-integrations/master/servers/azure/setup-workload-identity.sh
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>bash<span class="w"> </span>setup-workload-identity.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>curl<span class="w"> </span>-O<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/holmes-mcp-integrations/master/servers/azure/setup-azure-identity.sh
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>bash<span class="w"> </span>setup-azure-identity.sh<span class="w"> </span>--auth-method<span class="w"> </span>workload-identity<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>YOUR_RESOURCE_GROUP<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>--aks-cluster<span class="w"> </span>YOUR_AKS_CLUSTER<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>--all-subscriptions
 </span></code></pre></div>
 <p>This script will:</p>
 <ol>
