@@ -514,10 +514,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-model-lists" class="md-nav__link">
+  <a href="#using-multiple-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using Model Lists
+        Using Multiple Models
       
     </span>
   </a>
@@ -4238,10 +4238,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-model-lists" class="md-nav__link">
+  <a href="#using-multiple-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using Model Lists
+        Using Multiple Models
       
     </span>
   </a>
@@ -4618,37 +4618,8 @@
 <a class="glightbox" href="../../assets/cli-installation/cli-in-progress.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../../assets/cli-installation/cli-in-progress.png" /></a></p>
 <p><em>Once the analysis completes, HolmesGPT provides a clear root-cause summary and fix suggestions.</em>
 <a class="glightbox" href="../../assets/cli-installation/cli-analysis-result.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../../assets/cli-installation/cli-analysis-result.png" /></a></p>
-<h2 id="using-model-lists">Using Model Lists<a class="headerlink" href="#using-model-lists" title="Permanent link">&para;</a></h2>
-<p>You can define multiple models in a YAML file and reference them by name in the CLI. This is useful when you have multiple model configurations with different API keys, endpoints, or parameters.</p>
-<p><strong>1. Create a model list file:</strong></p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># model_list.yaml</span>
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nt">sonnet</span><span class="p">:</span>
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="nt">aws_access_key_id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-access-key&quot;</span>
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="nt">aws_region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
-</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="nt">aws_secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-secret-key&quot;</span>
-</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0</span>
-</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">    </span><span class="nt">thinking</span><span class="p">:</span>
-</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">        </span><span class="nt">budget_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span>
-</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
-</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>
-</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="nt">azure-5</span><span class="p">:</span>
-</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="w">    </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://your-resource.openai.azure.com</span>
-</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-api-key&quot;</span>
-</span><span id="__span-30-15"><a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="w">    </span><span class="nt">api_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-01-01-preview</span>
-</span><span id="__span-30-16"><a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/gpt-5</span>
-</span><span id="__span-30-17"><a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-</span></code></pre></div>
-<p><strong>2. Set the environment variable:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_LIST_FILE_LOCATION</span><span class="o">=</span><span class="s2">&quot;/path/to/model_list.yaml&quot;</span>
-</span></code></pre></div>
-<p><strong>3. Use models by name:</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what pods are failing?&quot;</span><span class="w"> </span>--model<span class="o">=</span>sonnet<span class="w"> </span>--no-interactive
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;analyze deployment&quot;</span><span class="w"> </span>--model<span class="o">=</span>azure-5<span class="w"> </span>--no-interactive
-</span></code></pre></div>
-<p>When using <code>--model</code>, specify the model name (key) from your YAML file, not the underlying model identifier. All configuration (API keys, endpoints, temperature, etc.) will be automatically loaded from the model list file.</p>
-<p><strong>Note:</strong> Environment variable substitution is supported using <code>{{ env.VARIABLE_NAME }}</code> syntax in the model list file.</p>
-<p>See <a href="../../reference/environment-variables/">Environment Variables Reference</a> for more details.</p>
+<h2 id="using-multiple-models">Using Multiple Models<a class="headerlink" href="#using-multiple-models" title="Permanent link">&para;</a></h2>
+<p>If you work with multiple AI providers or model configurations, you can define them in a YAML file and switch between them by name with <code>--model=&lt;name&gt;</code>. See <a href="../../ai-providers/using-multiple-providers/">Using Multiple Providers</a> for setup instructions.</p>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="../../data-sources/recommended-setup/">Recommended Setup</a></strong> - Connect metrics, logs, and cloud providers to unlock deeper investigations.</li>
