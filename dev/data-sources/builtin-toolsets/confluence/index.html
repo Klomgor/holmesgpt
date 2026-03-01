@@ -2103,10 +2103,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#capabilities" class="md-nav__link">
+  <a href="#configuration-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capabilities
+        Configuration Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
       
     </span>
   </a>
@@ -4196,10 +4229,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#capabilities" class="md-nav__link">
+  <a href="#configuration-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capabilities
+        Configuration Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
       
     </span>
   </a>
@@ -4306,42 +4372,170 @@
 
 
 <h1 id="confluence">Confluence<a class="headerlink" href="#confluence" title="Permanent link">&para;</a></h1>
-<p>By enabling this toolset, HolmesGPT will be able to fetch Confluence pages. This is particularly useful if you store runbooks in Confluence and want Holmes to run investigations using these runbooks.</p>
-<p>This toolset requires an <a href="https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/" target="_blank">Atlassian API Key</a>.</p>
+<p>By enabling this toolset, HolmesGPT can fetch and search Confluence pages. This is particularly useful if you store runbooks in Confluence and want Holmes to use them during investigations.</p>
+<p>LLMs can parse Confluence storage format (XHTML with macros) directly, so page content is returned as-is for maximum fidelity.</p>
+<p>Works with both <strong>Confluence Cloud</strong> and <strong>Confluence Data Center / Server</strong>.</p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="configuration-holmes-cli" name="__tabbed_1" type="radio" /><input id="configuration-robusta-helm-chart" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="configuration-holmes-cli">Holmes CLI</label><label for="configuration-robusta-helm-chart">Robusta Helm Chart</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="configuration-confluence-cloud" name="__tabbed_1" type="radio" /><input id="configuration-confluence-data-center--server" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="configuration-confluence-cloud">Confluence Cloud</label><label for="configuration-confluence-data-center--server">Confluence Data Center / Server</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Set the following environment variables and the Confluence toolset will be automatically enabled:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONFLUENCE_USER</span><span class="o">=</span><span class="s2">&quot;&lt;Confluence username&gt;&quot;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONFLUENCE_API_KEY</span><span class="o">=</span><span class="s2">&quot;&lt;Confluence API key&gt;&quot;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CONFLUENCE_BASE_URL</span><span class="o">=</span><span class="s2">&quot;&lt;Confluence base URL&gt;&quot;</span>
+<p><strong>Create an API token:</strong></p>
+<p>Go to <a href="https://id.atlassian.com/manage/api-tokens" target="_blank">Atlassian API Tokens</a> and create a new token. For service accounts, create a scoped API token in the <a href="https://admin.atlassian.com" target="_blank">Atlassian Admin</a> under <strong>Security</strong> &gt; <strong>API tokens</strong>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="configuration-holmes-cli" name="__tabbed_2" type="radio" /><input id="configuration-robusta-helm-chart" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="configuration-holmes-cli">Holmes CLI</label><label for="configuration-robusta-helm-chart">Robusta Helm Chart</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Add to your config file (<code>~/.holmes/config.yaml</code>):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">toolsets</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">confluence</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">api_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://yourcompany.atlassian.net&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-email@example.com&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-api-token&quot;</span>
 </span></code></pre></div>
 <p>To test, run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;why is my application failing? Get relevant runbooks from Confluence&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;search Confluence for runbooks about database issues&quot;</span>
 </span></code></pre></div>
 <p>After making changes to your configuration, run:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>holmes<span class="w"> </span>toolset<span class="w"> </span>refresh
 </span></code></pre></div></p>
 </div>
 <div class="tabbed-block">
-<p><strong>Helm Values:</strong></p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">holmes</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">additionalEnvVars</span><span class="p">:</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_USER</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;Confluence username&gt;</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_API_KEY</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;Confluence API key&gt;</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_BASE_URL</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;Confluence base URL&gt;</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">toolsets</span><span class="p">:</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="nt">confluence</span><span class="p">:</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">            </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">additionalEnvVars</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_API_URL</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://yourcompany.atlassian.net&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_USER</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-email@example.com&quot;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_API_KEY</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">confluence-credentials</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api-key</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">toolsets</span><span class="p">:</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nt">confluence</span><span class="p">:</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="nt">api_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.CONFLUENCE_API_URL</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.CONFLUENCE_USER</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.CONFLUENCE_API_KEY</span><span class="nv"> </span><span class="s">}}&quot;</span>
 </span></code></pre></div>
+<p>Update your Helm values and run a Helm upgrade:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>robusta<span class="w"> </span>robusta/robusta<span class="w"> </span>--values<span class="o">=</span>generated_values.yaml<span class="w"> </span>--set<span class="w"> </span><span class="nv">clusterName</span><span class="o">=</span>&lt;YOUR_CLUSTER_NAME&gt;
+</span></code></pre></div></p>
 </div>
 </div>
 </div>
-<h2 id="capabilities">Capabilities<a class="headerlink" href="#capabilities" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Scoped tokens and service accounts</p>
+<p>Scoped API tokens and service account tokens on Confluence Cloud require routing through the Atlassian API gateway (<code>api.atlassian.com</code>). HolmesGPT auto-detects this and switches to the gateway transparently — no extra configuration needed. If auto-detection doesn't work, you can set <code>cloud_id</code> explicitly (find it at <code>https://yourcompany.atlassian.net/_edge/tenant_info</code>).</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Data Center supports two authentication methods: Personal Access Tokens (recommended) and basic auth with username/password.</p>
+<p><strong>Create a Personal Access Token (PAT):</strong></p>
+<p>In Confluence Data Center, go to your <strong>Profile</strong> &gt; <strong>Personal Access Tokens</strong> &gt; <strong>Create token</strong>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="configuration-holmes-cli_1" name="__tabbed_3" type="radio" /><input id="configuration-robusta-helm-chart_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="configuration-holmes-cli_1">Holmes CLI</label><label for="configuration-robusta-helm-chart_1">Robusta Helm Chart</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Add to your config file (<code>~/.holmes/config.yaml</code>):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Using Personal Access Token (recommended)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">toolsets</span><span class="p">:</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">confluence</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="nt">api_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://confluence.yourcompany.com&quot;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-personal-access-token&quot;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">      </span><span class="nt">auth_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bearer&quot;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="nt">api_path_prefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span></code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Using username/password</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">toolsets</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">confluence</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="nt">api_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://confluence.yourcompany.com&quot;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-username&quot;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">      </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-password&quot;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">      </span><span class="nt">api_path_prefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span></code></pre></div>
+<p>After making changes to your configuration, run:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>holmes<span class="w"> </span>toolset<span class="w"> </span>refresh
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Using Personal Access Token (recommended)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">holmes</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">additionalEnvVars</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_API_URL</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://confluence.yourcompany.com&quot;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFLUENCE_PAT</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">confluence-credentials</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pat</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="nt">toolsets</span><span class="p">:</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="nt">confluence</span><span class="p">:</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">      </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="nt">api_url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.CONFLUENCE_API_URL</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.CONFLUENCE_PAT</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">        </span><span class="nt">auth_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bearer&quot;</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">        </span><span class="nt">api_path_prefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span></code></pre></div>
+<p>Update your Helm values and run a Helm upgrade:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>robusta<span class="w"> </span>robusta/robusta<span class="w"> </span>--values<span class="o">=</span>generated_values.yaml<span class="w"> </span>--set<span class="w"> </span><span class="nv">clusterName</span><span class="o">=</span>&lt;YOUR_CLUSTER_NAME&gt;
+</span></code></pre></div></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api_url</code></td>
+<td>(required)</td>
+<td>Base URL of the Confluence instance</td>
+</tr>
+<tr>
+<td><code>api_key</code></td>
+<td>(required)</td>
+<td>API token (Cloud), Personal Access Token, or password (Data Center)</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td><code>null</code></td>
+<td>User email (Cloud) or username (Data Center). Required for basic auth.</td>
+</tr>
+<tr>
+<td><code>auth_type</code></td>
+<td><code>basic</code></td>
+<td><code>basic</code> for Cloud or Data Center username/password. <code>bearer</code> for Data Center PATs.</td>
+</tr>
+<tr>
+<td><code>api_path_prefix</code></td>
+<td><code>/wiki</code></td>
+<td>Path prefix before <code>/rest/api</code>. Cloud uses <code>/wiki</code>. Data Center typically uses <code>""</code> (empty).</td>
+</tr>
+<tr>
+<td><code>cloud_id</code></td>
+<td><code>null</code></td>
+<td>Atlassian Cloud ID for the API gateway. Auto-detected for Cloud URLs when needed (scoped tokens / service accounts).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<p>The table below describes the specific capabilities provided by this toolset. HolmesGPT can decide to invoke any of these capabilities when answering questions or investigating issues.</p>
 <table>
 <thead>
 <tr>
@@ -4351,11 +4545,32 @@
 </thead>
 <tbody>
 <tr>
-<td>fetch_confluence_url</td>
-<td>Fetch a page in Confluence. Use this to fetch Confluence runbooks if they are present before starting your investigation.</td>
+<td>confluence_request</td>
+<td>Make HTTP GET requests to the Confluence REST API. Supports fetching pages, searching with CQL, listing spaces, and retrieving child pages or comments.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="common-use-cases">Common Use Cases<a class="headerlink" href="#common-use-cases" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Search Confluence for runbooks about database connection pool issues
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Find the on-call runbook in the SRE space and tell me the escalation contacts
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Get the Confluence page at https://mycompany.atlassian.net/wiki/spaces/OPS/pages/12345 and summarize the remediation steps
+</span></code></pre></div>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Test Cloud authentication</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;your-email@example.com:your-api-token&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="s2">&quot;https://yourcompany.atlassian.net/wiki/rest/api/space?limit=1&quot;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># Test Data Center PAT authentication</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer your-pat-token&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span><span class="s2">&quot;https://confluence.yourcompany.com/rest/api/space?limit=1&quot;</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1"># Test Data Center basic auth</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;username:password&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">  </span><span class="s2">&quot;https://confluence.yourcompany.com/rest/api/space?limit=1&quot;</span>
+</span></code></pre></div>
+<p>If you get <code>401 Unauthorized</code>, verify your credentials. If you get <code>404 Not Found</code>, check the <code>api_path_prefix</code> — Cloud uses <code>/wiki</code> while Data Center typically uses no prefix.</p>
 
 
 
