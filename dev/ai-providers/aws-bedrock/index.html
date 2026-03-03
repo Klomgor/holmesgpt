@@ -1298,6 +1298,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#using-bearer-token-authentication-iam-identity-center" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Bearer Token Authentication (IAM Identity Center)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#finding-your-aws-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4353,6 +4364,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#using-bearer-token-authentication-iam-identity-center" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Bearer Token Authentication (IAM Identity Center)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#finding-your-aws-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4654,13 +4676,25 @@ This tells HolmesGPT the actual context window size (1M tokens) so it can proper
 <p class="admonition-title">Both Parameters Required</p>
 <p>You must include <strong>both</strong> <code>extra_headers</code> and <code>custom_args</code> to use the 1M context window. The <code>extra_headers</code> enables the feature, while <code>custom_args.max_context_size</code> ensures HolmesGPT knows the correct window size.</p>
 </div>
+<h3 id="using-bearer-token-authentication-iam-identity-center">Using Bearer Token Authentication (IAM Identity Center)<a class="headerlink" href="#using-bearer-token-authentication-iam-identity-center" title="Permanent link">&para;</a></h3>
+<p>If you're using AWS IAM Identity Center (SSO) with Bedrock, you can authenticate via bearer token instead of access/secret keys.</p>
+<p>Set the environment variable:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_BEARER_TOKEN_BEDROCK</span><span class="o">=</span><span class="s2">&quot;your-bearer-token&quot;</span>
+</span></code></pre></div></p>
+<p>Or use <code>api_key</code> in the <code>modelList</code> config:
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">modelList</span><span class="p">:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">bedrock-claude-sonnet-4</span><span class="p">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.AWS_BEARER_TOKEN_BEDROCK</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">aws_region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bedrock/anthropic.claude-sonnet-4-20250514-v1:0</span>
+</span></code></pre></div></p>
 <h3 id="finding-your-aws-credentials">Finding Your AWS Credentials<a class="headerlink" href="#finding-your-aws-credentials" title="Permanent link">&para;</a></h3>
 <p>If the AWS CLI is already configured on your machine, you may be able to find the above values with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat<span class="w"> </span>~/.aws/credentials<span class="w"> </span>~/.aws/config
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat<span class="w"> </span>~/.aws/credentials<span class="w"> </span>~/.aws/config
 </span></code></pre></div>
 <h3 id="finding-available-models">Finding Available Models<a class="headerlink" href="#finding-available-models" title="Permanent link">&para;</a></h3>
 <p>To list models your account can access (replacing <code>us-east-1</code> with the relevant region):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>aws<span class="w"> </span>bedrock<span class="w"> </span>list-foundation-models<span class="w"> </span>--region<span class="o">=</span>us-east-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>modelId
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>aws<span class="w"> </span>bedrock<span class="w"> </span>list-foundation-models<span class="w"> </span>--region<span class="o">=</span>us-east-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>modelId
 </span></code></pre></div>
 <p><strong>Important</strong>: Different models are available in different regions. For example, Claude Opus is only available in us-west-2.</p>
 <h3 id="model-name-examples">Model Name Examples<a class="headerlink" href="#model-name-examples" title="Permanent link">&para;</a></h3>
@@ -4670,7 +4704,7 @@ This tells HolmesGPT the actual context window size (1M tokens) so it can proper
 <p>For example, to enable 1M context windows.</p>
 <p>You can enable <code>Extra Headers</code> in both the CLI (via env vars) and the Helm charts options.</p>
 <p>For the CLI:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">EXTRA_HEADERS</span><span class="o">=</span><span class="s2">&quot;{\&quot;anthropic-beta\&quot;: \&quot;context-1m-2025-08-07\&quot;}&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">EXTRA_HEADERS</span><span class="o">=</span><span class="s2">&quot;{\&quot;anthropic-beta\&quot;: \&quot;context-1m-2025-08-07\&quot;}&quot;</span>
 </span></code></pre></div></p>
 <p>Or, for Helm:</p>
 <div class="language-text highlight"><pre><span></span><code># values.yaml
