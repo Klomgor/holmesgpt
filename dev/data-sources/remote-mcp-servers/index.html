@@ -16,7 +16,7 @@
         <link rel="prev" href="../custom-toolsets/">
       
       
-        <link rel="next" href="../../development/evaluations/">
+        <link rel="next" href="../header-propagation/">
       
       
         
@@ -1534,6 +1534,8 @@
       
         
           
+        
+      
         
       
         
@@ -3180,6 +3182,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../header-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Header Propagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4707,11 +4737,11 @@
 <p>The URL should end with <code>/sse</code>. If it doesn't, HolmesGPT will automatically append it.</p>
 <h2 id="advanced-configuration">Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Permanent link">&para;</a></h2>
 <p><strong>Dynamic Headers with Request Context</strong></p>
-<p>MCP servers can use dynamic headers populated from the incoming HTTP request. This is useful for passing per-request authentication tokens.</p>
+<p>MCP servers can forward HTTP headers from the incoming request to the MCP backend. Use <code>extra_headers</code> with Jinja2 templates referencing <code>request_context.headers</code>. Header lookups are case-insensitive. You can also use environment variables (<code>{{ env.MY_VAR }}</code>) or combine them (<code>Bearer {{ request_context.headers['token'] }}</code>).</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="advanced-configuration-holmes-cli" name="__tabbed_4" type="radio" /><input id="advanced-configuration-holmes-helm-chart" name="__tabbed_4" type="radio" /><input id="advanced-configuration-robusta-helm-chart" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="advanced-configuration-holmes-cli">Holmes CLI</label><label for="advanced-configuration-holmes-helm-chart">Holmes Helm Chart</label><label for="advanced-configuration-robusta-helm-chart">Robusta Helm Chart</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Not applicable - request context is only available when running Holmes as a server.</p>
+<p>Not applicable — request context is only available when running Holmes as a server.</p>
 </div>
 <div class="tabbed-block">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">mcp_servers</span><span class="p">:</span>
@@ -4740,28 +4770,22 @@
 </div>
 </div>
 </div>
-<p>When making requests to HolmesGPT, include the required header:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://holmes-server/api/investigate<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-Auth-Token: your-auth-token-here&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;question&quot;: &quot;Check system status&quot;}&#39;</span>
-</span></code></pre></div>
-<p>Header lookups are case-insensitive. You can also use environment variables (<code>{{ env.MY_VAR }}</code>) or combine them (<code>Bearer {{ request_context.headers['token'] }}</code>).</p>
+<p>For full details on template syntax, blocked headers, precedence rules, and examples for other toolset types, see <a href="../header-propagation/">HTTP Header Propagation</a>.</p>
 <h2 id="configuration-format-migration">Configuration Format Migration<a class="headerlink" href="#configuration-format-migration" title="Permanent link">&para;</a></h2>
 <p>The MCP server configuration format has been updated. The <code>url</code> field must now be inside the <code>config</code> section.</p>
 <p><strong>Old format (deprecated):</strong></p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nt">mcp_servers</span><span class="p">:</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nt">my_server</span><span class="p">:</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.com:8000/mcp/messages&quot;</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">server&quot;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">mcp_servers</span><span class="p">:</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span><span class="nt">my_server</span><span class="p">:</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.com:8000/mcp/messages&quot;</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">server&quot;</span>
 </span></code></pre></div>
 <p><strong>New format:</strong></p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">mcp_servers</span><span class="p">:</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="nt">my_server</span><span class="p">:</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">server&quot;</span>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.com:8000/mcp/messages&quot;</span>
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">streamable-http</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nt">mcp_servers</span><span class="p">:</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nt">my_server</span><span class="p">:</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">server&quot;</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://example.com:8000/mcp/messages&quot;</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">streamable-http</span>
 </span></code></pre></div>
 <p>The old format still works but will log a migration warning.</p>
 
@@ -4818,13 +4842,13 @@
         
         
           
-          <a href="../../development/evaluations/" class="md-footer__link md-footer__link--next" aria-label="Next: HolmesGPT Evaluations">
+          <a href="../header-propagation/" class="md-footer__link md-footer__link--next" aria-label="Next: HTTP Header Propagation">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                HolmesGPT Evaluations
+                HTTP Header Propagation
               </div>
             </div>
             <div class="md-footer__button md-icon">

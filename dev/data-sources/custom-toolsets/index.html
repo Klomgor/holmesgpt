@@ -1546,6 +1546,8 @@
       
         
       
+        
+      
     
     
     
@@ -3275,6 +3277,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../header-propagation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Header Propagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4866,6 +4896,8 @@
 <ul>
 <li><strong><code>{{ variable }}</code></strong>: Dynamic variables inferred by the LLM based on context</li>
 <li><strong><code>${VARIABLE}</code></strong>: Environment variables (not visible to the LLM)</li>
+<li><strong><code>{{ request_context.headers['Header-Name'] }}</code></strong>: Headers from the incoming HTTP request (see <a href="../header-propagation/">HTTP Header Propagation</a>)</li>
+<li><strong><code>{{ env.VAR_NAME }}</code></strong>: Environment variables accessible via Jinja2 templates</li>
 </ul>
 <h3 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h3>
 <p>Optional tags help categorize toolsets:</p>
