@@ -4293,6 +4293,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Design Decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4512,7 +4529,14 @@
 <li><strong>Operator</strong>: Watches CRDs and orchestrates check execution</li>
 <li><strong>Holmes API</strong>: Executes the actual health check logic using LLM</li>
 </ul>
-<p>For detailed architecture information, see the <a href="../adr/operator-initial-architecture/">architecture documentation</a>.</p>
+<p>The operator uses a distributed architecture: a lightweight kopf-based controller handles CRD orchestration and scheduling, while stateless Holmes API servers execute the actual checks.</p>
+<h3 id="key-design-decisions">Key Design Decisions<a class="headerlink" href="#key-design-decisions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Job/CronJob pattern</strong>: Separate HealthCheck and ScheduledHealthCheck CRDs provide clear semantics — one-time checks give immediate feedback, scheduled checks manage recurrence. This mirrors the familiar Kubernetes Job/CronJob model.</li>
+<li><strong>Distributed operator + API servers</strong>: The operator is a lightweight controller that delegates check execution to stateless Holmes API servers via HTTP. This allows API servers to scale horizontally and isolates scheduling concerns from execution.</li>
+<li><strong>APScheduler over CronJobs</strong>: Scheduling uses APScheduler within the operator rather than Kubernetes CronJobs. This is more efficient for frequent checks and avoids pod startup overhead per execution.</li>
+<li><strong>HealthCheck resources as history</strong>: ScheduledHealthCheck creates HealthCheck resources for each run, providing a natural audit trail queryable with standard kubectl commands.</li>
+</ul>
 <h2 id="need-help">Need Help?<a class="headerlink" href="#need-help" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="https://cloud-native.slack.com/archives/C0A1SPQM5PZ">Join our Slack</a></strong> - Get help from the community</li>
