@@ -1298,6 +1298,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#using-irsa-iam-roles-for-service-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using IRSA (IAM Roles for Service Accounts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#using-bearer-token-authentication-iam-identity-center" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1703,6 +1714,8 @@
       
         
           
+        
+      
         
       
         
@@ -3189,6 +3202,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../data-sources/database-connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../data-sources/custom-toolsets/" class="md-nav__link">
         
   
@@ -4424,6 +4465,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#using-irsa-iam-roles-for-service-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using IRSA (IAM Roles for Service Accounts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#using-bearer-token-authentication-iam-identity-center" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4736,35 +4788,105 @@ This tells HolmesGPT the actual context window size (1M tokens) so it can proper
 <p class="admonition-title">Both Parameters Required</p>
 <p>You must include <strong>both</strong> <code>extra_headers</code> and <code>custom_args</code> to use the 1M context window. The <code>extra_headers</code> enables the feature, while <code>custom_args.max_context_size</code> ensures HolmesGPT knows the correct window size.</p>
 </div>
+<h3 id="using-irsa-iam-roles-for-service-accounts">Using IRSA (IAM Roles for Service Accounts)<a class="headerlink" href="#using-irsa-iam-roles-for-service-accounts" title="Permanent link">&para;</a></h3>
+<p>If you're running HolmesGPT on Kubernetes with IRSA, you can authenticate without static credentials. The AWS SDK picks up the role automatically when the pod's service account is annotated with the role ARN and the following environment variables are injected into the pod:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AWS_ROLE_ARN</code></td>
+<td>ARN of the IAM role to assume</td>
+</tr>
+<tr>
+<td><code>AWS_WEB_IDENTITY_TOKEN_FILE</code></td>
+<td>Path to the projected service account token</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="using-irsa-iam-roles-for-service-accounts-holmes-helm-chart" name="__tabbed_2" type="radio" /><input id="using-irsa-iam-roles-for-service-accounts-robusta-helm-chart" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="using-irsa-iam-roles-for-service-accounts-holmes-helm-chart">Holmes Helm Chart</label><label for="using-irsa-iam-roles-for-service-accounts-robusta-helm-chart">Robusta Helm Chart</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Configure Helm Values:</strong>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># values.yaml</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">serviceAccount</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">eks.amazonaws.com/role-arn</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;arn:aws:iam::&lt;account-id&gt;:role/&lt;role-name&gt;&quot;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># Configure at least one model using modelList (no credentials needed)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nt">modelList</span><span class="p">:</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nt">bedrock-claude-sonnet-4</span><span class="p">:</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nt">aws_region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eu-west-3</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bedrock/eu.anthropic.claude-sonnet-4-20250514-v1:0</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nt">thinking</span><span class="p">:</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">      </span><span class="nt">budget_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="c1"># Optional: Set default model (use modelList key name)</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bedrock-claude-sonnet-4&quot;</span>
+</span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p><strong>Configure Helm Values:</strong>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># values.yaml</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">holmes</span><span class="p">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">serviceAccount</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">eks.amazonaws.com/role-arn</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;arn:aws:iam::&lt;account-id&gt;:role/&lt;role-name&gt;&quot;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="c1"># Configure at least one model using modelList (no credentials needed)</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="nt">modelList</span><span class="p">:</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nt">bedrock-claude-sonnet-4</span><span class="p">:</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">      </span><span class="nt">aws_region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eu-west-3</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bedrock/eu.anthropic.claude-sonnet-4-20250514-v1:0</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">      </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">      </span><span class="nt">thinking</span><span class="p">:</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="nt">budget_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">  </span><span class="c1"># Optional: Set default model (use modelList key name)</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bedrock-claude-sonnet-4&quot;</span>
+</span></code></pre></div></p>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> With IRSA, you do not need <code>AWS_ACCESS_KEY_ID</code> or <code>AWS_SECRET_ACCESS_KEY</code>. The AWS SDK picks up the injected token automatically.</p>
 <h3 id="using-bearer-token-authentication-iam-identity-center">Using Bearer Token Authentication (IAM Identity Center)<a class="headerlink" href="#using-bearer-token-authentication-iam-identity-center" title="Permanent link">&para;</a></h3>
 <p>If you're using AWS IAM Identity Center (SSO) with Bedrock, you can authenticate via bearer token instead of access/secret keys.</p>
 <p>Set the environment variable:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_BEARER_TOKEN_BEDROCK</span><span class="o">=</span><span class="s2">&quot;your-bearer-token&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_BEARER_TOKEN_BEDROCK</span><span class="o">=</span><span class="s2">&quot;your-bearer-token&quot;</span>
 </span></code></pre></div></p>
 <p>Or use <code>api_key</code> in the <code>modelList</code> config:
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">modelList</span><span class="p">:</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">bedrock-claude-sonnet-4</span><span class="p">:</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.AWS_BEARER_TOKEN_BEDROCK</span><span class="nv"> </span><span class="s">}}&quot;</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">aws_region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bedrock/anthropic.claude-sonnet-4-20250514-v1:0</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">modelList</span><span class="p">:</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">bedrock-claude-sonnet-4</span><span class="p">:</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nt">api_key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">env.AWS_BEARER_TOKEN_BEDROCK</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nt">aws_region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bedrock/anthropic.claude-sonnet-4-20250514-v1:0</span>
 </span></code></pre></div></p>
 <h3 id="finding-your-aws-credentials">Finding Your AWS Credentials<a class="headerlink" href="#finding-your-aws-credentials" title="Permanent link">&para;</a></h3>
 <p>If the AWS CLI is already configured on your machine, you may be able to find the above values with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat<span class="w"> </span>~/.aws/credentials<span class="w"> </span>~/.aws/config
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cat<span class="w"> </span>~/.aws/credentials<span class="w"> </span>~/.aws/config
 </span></code></pre></div>
 <h3 id="finding-available-models">Finding Available Models<a class="headerlink" href="#finding-available-models" title="Permanent link">&para;</a></h3>
 <p>To list models your account can access (replacing <code>us-east-1</code> with the relevant region):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>aws<span class="w"> </span>bedrock<span class="w"> </span>list-foundation-models<span class="w"> </span>--region<span class="o">=</span>us-east-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>modelId
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>aws<span class="w"> </span>bedrock<span class="w"> </span>list-foundation-models<span class="w"> </span>--region<span class="o">=</span>us-east-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>modelId
 </span></code></pre></div>
 <p><strong>Important</strong>: Different models are available in different regions. For example, Claude Opus is only available in us-west-2.</p>
 <h3 id="model-name-examples">Model Name Examples<a class="headerlink" href="#model-name-examples" title="Permanent link">&para;</a></h3>
 <p>Be sure to replace <code>&lt;your-bedrock-model&gt;</code> with a model you have access to, such as <code>anthropic.claude-opus-4-1-20250805-v1:0</code> or <code>anthropic.claude-sonnet-4-20250514-v1:0</code></p>
 <h2 id="setting-extra-headers">Setting Extra Headers<a class="headerlink" href="#setting-extra-headers" title="Permanent link">&para;</a></h2>
-<p>You can enable various beta features in AWS Bedrock by setting custom headers. </p>
+<p>You can enable various beta features in AWS Bedrock by setting custom headers.</p>
 <p>For example, to enable 1M context windows.</p>
 <p>You can enable <code>Extra Headers</code> in both the CLI (via env vars) and the Helm charts options.</p>
 <p>For the CLI:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">EXTRA_HEADERS</span><span class="o">=</span><span class="s2">&quot;{\&quot;anthropic-beta\&quot;: \&quot;context-1m-2025-08-07\&quot;}&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">EXTRA_HEADERS</span><span class="o">=</span><span class="s2">&quot;{\&quot;anthropic-beta\&quot;: \&quot;context-1m-2025-08-07\&quot;}&quot;</span>
 </span></code></pre></div></p>
 <p>Or, for Helm:</p>
 <div class="language-text highlight"><pre><span></span><code># values.yaml
