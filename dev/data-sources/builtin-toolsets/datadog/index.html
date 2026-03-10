@@ -96,30 +96,21 @@
     </div>
     <div data-md-component="announce">
       
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-              <button class="md-banner__button md-icon" aria-label="Don't show this again">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-              </button>
-            
-            
-<div class="md-banner">
-  <div class="md-banner__inner">
-    📅 <a href="https://docs.google.com/document/d/1q3L2iUd8tNu-NmZ6QIVOJcCLHrile9CC5QguOGTn_tg/edit?tab=t.0#heading=h.ihdnrt5bstrv">Join our next community meetup!</a>
-  </div>
-</div>
-
-          </div>
-          
-            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
-          
-        </aside>
-      
     </div>
     
       <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're viewing docs for a <strong>previous version</strong>.
+  <a href="../../../..">
+    <strong>Switch to the latest stable release.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
         
       </div>
     
@@ -244,6 +235,45 @@
 </div>
       
     
+    <a href="https://docs.google.com/document/d/1q3L2iUd8tNu-NmZ6QIVOJcCLHrile9CC5QguOGTn_tg/edit?tab=t.0#heading=h.ihdnrt5bstrv" id="meetup-countdown" class="md-header__meetup" title="Community meetup">
+    </a>
+    <script>
+      (function() {
+        // Meetings are every 4 weeks (28 days) on Thursdays
+        // Known dates: Jan 15, Feb 12, Mar 12 2026
+        var ANCHOR = new Date(2026, 2, 12); // Mar 12, 2026 (month is 0-indexed)
+        var CYCLE = 28; // days
+
+        function update() {
+          var now = new Date();
+          var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+          // Calculate days since anchor, find next occurrence
+          var diff = Math.floor((today - ANCHOR) / (1000 * 60 * 60 * 24));
+          var remainder = ((diff % CYCLE) + CYCLE) % CYCLE; // handle dates before anchor too
+          var daysUntil = remainder === 0 ? 0 : CYCLE - remainder;
+
+          var el = document.getElementById("meetup-countdown");
+          if (!el) return;
+
+          var text;
+          if (daysUntil === 0) {
+            text = "Community meetup today!";
+          } else if (daysUntil === 1) {
+            text = "1 day until community meetup";
+          } else {
+            text = daysUntil + " days until community meetup";
+          }
+          el.textContent = text;
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", update);
+        } else {
+          update();
+        }
+      })();
+    </script>
     
       <div class="md-header__source">
         <a href="https://github.com/HolmesGPT/holmesgpt" title="Go to repository" class="md-source" data-md-component="source">
@@ -4835,13 +4865,13 @@
 <p><strong>Configuration</strong></p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd_1" name="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd" type="radio">
-<input id="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd_2" name="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd" type="radio">
-<input id="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd_3" name="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd" type="radio">
+<input checked="checked" id="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578_1" name="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578" type="radio">
+<input id="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578_2" name="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578" type="radio">
+<input id="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578_3" name="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd_1">Holmes CLI</label>
-<label for="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd_2">Holmes Helm Chart</label>
-<label for="__tabbed_f3d1ed2f_2c58_4fd4_869f_e62c7eea9bbd_3">Robusta Helm Chart</label>
+<label for="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578_1">Holmes CLI</label>
+<label for="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578_2">Holmes Helm Chart</label>
+<label for="__tabbed_740bcae8_fdbb_48a9_af1e_c65e1710e578_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4936,13 +4966,13 @@
 <p><strong>Configuration</strong></p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_5d767373_5c4d_496a_8582_285302d593f7_1" name="__tabbed_5d767373_5c4d_496a_8582_285302d593f7" type="radio">
-<input id="__tabbed_5d767373_5c4d_496a_8582_285302d593f7_2" name="__tabbed_5d767373_5c4d_496a_8582_285302d593f7" type="radio">
-<input id="__tabbed_5d767373_5c4d_496a_8582_285302d593f7_3" name="__tabbed_5d767373_5c4d_496a_8582_285302d593f7" type="radio">
+<input checked="checked" id="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091_1" name="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091" type="radio">
+<input id="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091_2" name="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091" type="radio">
+<input id="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091_3" name="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_5d767373_5c4d_496a_8582_285302d593f7_1">Holmes CLI</label>
-<label for="__tabbed_5d767373_5c4d_496a_8582_285302d593f7_2">Holmes Helm Chart</label>
-<label for="__tabbed_5d767373_5c4d_496a_8582_285302d593f7_3">Robusta Helm Chart</label>
+<label for="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091_1">Holmes CLI</label>
+<label for="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091_2">Holmes Helm Chart</label>
+<label for="__tabbed_7bd5a287_e38a_40a4_85fd_9e3c867da091_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5036,13 +5066,13 @@
 <p><strong>Configuration</strong></p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24_1" name="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24" type="radio">
-<input id="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24_2" name="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24" type="radio">
-<input id="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24_3" name="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24" type="radio">
+<input checked="checked" id="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34_1" name="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34" type="radio">
+<input id="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34_2" name="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34" type="radio">
+<input id="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34_3" name="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24_1">Holmes CLI</label>
-<label for="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24_2">Holmes Helm Chart</label>
-<label for="__tabbed_48d961f6_1f8f_4065_8fd5_c17e06789f24_3">Robusta Helm Chart</label>
+<label for="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34_1">Holmes CLI</label>
+<label for="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34_2">Holmes Helm Chart</label>
+<label for="__tabbed_f80ac42b_176e_4614_be89_1aea1320aa34_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5119,13 +5149,13 @@
 <p><strong>Configuration</strong></p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969_1" name="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969" type="radio">
-<input id="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969_2" name="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969" type="radio">
-<input id="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969_3" name="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969" type="radio">
+<input checked="checked" id="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509_1" name="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509" type="radio">
+<input id="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509_2" name="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509" type="radio">
+<input id="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509_3" name="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969_1">Holmes CLI</label>
-<label for="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969_2">Holmes Helm Chart</label>
-<label for="__tabbed_822426f5_de5d_4c1e_afe7_14b5eabc0969_3">Robusta Helm Chart</label>
+<label for="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509_1">Holmes CLI</label>
+<label for="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509_2">Holmes Helm Chart</label>
+<label for="__tabbed_10d09c5d_0680_4886_a06a_6e6d736f8509_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">

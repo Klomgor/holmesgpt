@@ -96,30 +96,21 @@
     </div>
     <div data-md-component="announce">
       
-        <aside class="md-banner">
-          <div class="md-banner__inner md-grid md-typeset">
-            
-              <button class="md-banner__button md-icon" aria-label="Don't show this again">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-              </button>
-            
-            
-<div class="md-banner">
-  <div class="md-banner__inner">
-    📅 <a href="https://docs.google.com/document/d/1q3L2iUd8tNu-NmZ6QIVOJcCLHrile9CC5QguOGTn_tg/edit?tab=t.0#heading=h.ihdnrt5bstrv">Join our next community meetup!</a>
-  </div>
-</div>
-
-          </div>
-          
-            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
-          
-        </aside>
-      
     </div>
     
       <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're viewing docs for a <strong>previous version</strong>.
+  <a href="../../..">
+    <strong>Switch to the latest stable release.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
         
       </div>
     
@@ -244,6 +235,45 @@
 </div>
       
     
+    <a href="https://docs.google.com/document/d/1q3L2iUd8tNu-NmZ6QIVOJcCLHrile9CC5QguOGTn_tg/edit?tab=t.0#heading=h.ihdnrt5bstrv" id="meetup-countdown" class="md-header__meetup" title="Community meetup">
+    </a>
+    <script>
+      (function() {
+        // Meetings are every 4 weeks (28 days) on Thursdays
+        // Known dates: Jan 15, Feb 12, Mar 12 2026
+        var ANCHOR = new Date(2026, 2, 12); // Mar 12, 2026 (month is 0-indexed)
+        var CYCLE = 28; // days
+
+        function update() {
+          var now = new Date();
+          var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+          // Calculate days since anchor, find next occurrence
+          var diff = Math.floor((today - ANCHOR) / (1000 * 60 * 60 * 24));
+          var remainder = ((diff % CYCLE) + CYCLE) % CYCLE; // handle dates before anchor too
+          var daysUntil = remainder === 0 ? 0 : CYCLE - remainder;
+
+          var el = document.getElementById("meetup-countdown");
+          if (!el) return;
+
+          var text;
+          if (daysUntil === 0) {
+            text = "Community meetup today!";
+          } else if (daysUntil === 1) {
+            text = "1 day until community meetup";
+          } else {
+            text = daysUntil + " days until community meetup";
+          }
+          el.textContent = text;
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", update);
+        } else {
+          update();
+        }
+      })();
+    </script>
     
       <div class="md-header__source">
         <a href="https://github.com/HolmesGPT/holmesgpt" title="Go to repository" class="md-source" data-md-component="source">
@@ -1304,6 +1334,89 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#microsoft-entra-id-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microsoft Entra ID Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Entra ID Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-disable-local-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Disable Local Auth?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-in-kubernetes-with-workload-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running in Kubernetes with Workload Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4358,6 +4471,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#microsoft-entra-id-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microsoft Entra ID Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microsoft Entra ID Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-disable-local-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Disable Local Auth?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-in-kubernetes-with-workload-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running in Kubernetes with Workload Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#additional-resources" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4543,13 +4739,179 @@
 <p>You can also pass the API key directly as a command-line parameter:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what pods are failing?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;azure/&lt;your-deployment-name&gt;&quot;</span><span class="w"> </span>--api-key<span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span>
 </span></code></pre></div>
+<h2 id="microsoft-entra-id-authentication">Microsoft Entra ID Authentication<a class="headerlink" href="#microsoft-entra-id-authentication" title="Permanent link">&para;</a></h2>
+<p>Authenticate HolmesGPT to Azure OpenAI or Microsoft Foundry using Microsoft Entra ID (formerly Azure AD) instead of an API key.</p>
+<p>This uses <code>DefaultAzureCredential</code> to obtain a bearer token, which is ideal for organizations that enforce identity-based access control and <a href="https://docs.azure.cn/en-us/ai-services/disable-local-auth#how-to-disable-local-authentication" target="_blank">disable local authentication (API keys)</a> on their Azure AI resources.</p>
+<h3 id="why-disable-local-auth">Why Disable Local Auth?<a class="headerlink" href="#why-disable-local-auth" title="Permanent link">&para;</a></h3>
+<p>Microsoft Foundry and Azure OpenAI resources support two authentication methods: API keys (local auth) and Microsoft Entra ID. For production environments, Microsoft recommends disabling local authentication so that:</p>
+<ul>
+<li>All access is governed by Azure RBAC — no static secrets to rotate or leak</li>
+<li>Every request is tied to an auditable identity</li>
+<li>Conditional Access policies and Privileged Identity Management apply</li>
+</ul>
+<p>When local auth is disabled on your Azure resource, API key access is completely blocked and only Entra ID tokens are accepted. HolmesGPT supports this scenario via the <code>AZURE_AD_TOKEN_AUTH</code> environment variable.</p>
+<p>To disable local auth on your resource:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>az<span class="w"> </span>cognitiveservices<span class="w"> </span>account<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--name<span class="w"> </span>&lt;resource-name&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--resource-group<span class="w"> </span>&lt;rg&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--custom-domain<span class="w"> </span>&lt;resource-name&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>--disable-local-auth<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>For more details, see <a href="https://docs.azure.cn/en-us/ai-services/disable-local-auth#how-to-disable-local-authentication" target="_blank">Disable local authentication in Azure AI Services</a>.</p>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<p>Set <code>AZURE_AD_TOKEN_AUTH=true</code> to enable Entra ID authentication. When enabled, HolmesGPT will:</p>
+<ul>
+<li>Skip the <code>AZURE_API_KEY</code> requirement during startup validation</li>
+<li>Obtain a token via <code>DefaultAzureCredential</code> and pass it to each LLM request</li>
+<li>Cache the token for 1 hour and refresh automatically</li>
+</ul>
+<h3 id="required-permissions">Required Permissions<a class="headerlink" href="#required-permissions" title="Permanent link">&para;</a></h3>
+<p>The identity used by HolmesGPT must be able to perform the action:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Microsoft.CognitiveServices/accounts/OpenAI/deployments/chat/completions/action
+</span></code></pre></div>
+<p>on the target Azure OpenAI or Microsoft Foundry resource.</p>
+<p>You can grant this with the <strong>Cognitive Services OpenAI User</strong> or <strong>Azure AI User</strong> built-in role, or a custom role that includes the action above:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>az<span class="w"> </span>role<span class="w"> </span>assignment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>--assignee<span class="w"> </span><span class="s2">&quot;&lt;identity-principal-id&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>--role<span class="w"> </span><span class="s2">&quot;Cognitive Services OpenAI User&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>--scope<span class="w"> </span><span class="s2">&quot;/subscriptions/&lt;sub&gt;/resourceGroups/&lt;rg&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;resource&gt;&quot;</span>
+</span></code></pre></div>
+<h3 id="running-locally">Running Locally<a class="headerlink" href="#running-locally" title="Permanent link">&para;</a></h3>
+<p>When running HolmesGPT on your machine, <code>DefaultAzureCredential</code> tries credentials in order: environment variables, Azure CLI, Azure PowerShell, etc. The simplest method is to sign in with the Azure CLI:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>az<span class="w"> </span>login
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_AD_TOKEN_AUTH</span><span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_VERSION</span><span class="o">=</span><span class="s2">&quot;2024-02-15-preview&quot;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_BASE</span><span class="o">=</span><span class="s2">&quot;https://your-resource.openai.azure.com&quot;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what pods are failing?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;azure/&lt;your-deployment-name&gt;&quot;</span>
+</span></code></pre></div>
+<p>No <code>AZURE_API_KEY</code> is needed.</p>
+<p>For service-principal auth locally, set these environment variables instead:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_CLIENT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;app-client-id&gt;&quot;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_CLIENT_SECRET</span><span class="o">=</span><span class="s2">&quot;&lt;app-client-secret&gt;&quot;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_TENANT_ID</span><span class="o">=</span><span class="s2">&quot;&lt;tenant-id&gt;&quot;</span>
+</span></code></pre></div>
+<h3 id="running-in-kubernetes-with-workload-identity">Running in Kubernetes with Workload Identity<a class="headerlink" href="#running-in-kubernetes-with-workload-identity" title="Permanent link">&para;</a></h3>
+<p>When running as a pod in AKS, use <a href="https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview" target="_blank">AKS Workload Identity</a> so the pod authenticates via a federated credential rather than a stored secret. The managed identity (or service principal) bound to the pod must have the <strong>Cognitive Services OpenAI User</strong> role on the target resource.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="running-in-kubernetes-with-workload-identity-holmes-helm-chart" name="__tabbed_2" type="radio" /><input id="running-in-kubernetes-with-workload-identity-robusta-helm-chart" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="running-in-kubernetes-with-workload-identity-holmes-helm-chart">Holmes Helm Chart</label><label for="running-in-kubernetes-with-workload-identity-robusta-helm-chart">Robusta Helm Chart</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>AKS cluster with OIDC issuer and workload identity enabled</li>
+<li>A managed identity with the <strong>Cognitive Services OpenAI User</strong> role on your Azure OpenAI resource</li>
+<li>A federated credential linking the managed identity to the Holmes ServiceAccount</li>
+</ul>
+<p><strong>Set up the identity and federation:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Get the OIDC issuer URL</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">OIDC_ISSUER</span><span class="o">=</span><span class="k">$(</span>az<span class="w"> </span>aks<span class="w"> </span>show<span class="w"> </span>-n<span class="w"> </span>&lt;cluster&gt;<span class="w"> </span>-g<span class="w"> </span>&lt;rg&gt;<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;oidcIssuerProfile.issuerUrl&quot;</span><span class="w"> </span>-o<span class="w"> </span>tsv<span class="k">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Create a managed identity</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>az<span class="w"> </span>identity<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>holmes-identity<span class="w"> </span>-g<span class="w"> </span>&lt;rg&gt;
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nv">IDENTITY_CLIENT_ID</span><span class="o">=</span><span class="k">$(</span>az<span class="w"> </span>identity<span class="w"> </span>show<span class="w"> </span>-n<span class="w"> </span>holmes-identity<span class="w"> </span>-g<span class="w"> </span>&lt;rg&gt;<span class="w"> </span>--query<span class="w"> </span>clientId<span class="w"> </span>-o<span class="w"> </span>tsv<span class="k">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nv">IDENTITY_PRINCIPAL_ID</span><span class="o">=</span><span class="k">$(</span>az<span class="w"> </span>identity<span class="w"> </span>show<span class="w"> </span>-n<span class="w"> </span>holmes-identity<span class="w"> </span>-g<span class="w"> </span>&lt;rg&gt;<span class="w"> </span>--query<span class="w"> </span>principalId<span class="w"> </span>-o<span class="w"> </span>tsv<span class="k">)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># Assign the Cognitive Services OpenAI User role</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>az<span class="w"> </span>role<span class="w"> </span>assignment<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">  </span>--assignee<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$IDENTITY_PRINCIPAL_ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">  </span>--role<span class="w"> </span><span class="s2">&quot;Cognitive Services OpenAI User&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">  </span>--scope<span class="w"> </span><span class="s2">&quot;/subscriptions/&lt;sub&gt;/resourceGroups/&lt;rg&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;resource&gt;&quot;</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="c1"># Create a federated credential for the Holmes ServiceAccount</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>az<span class="w"> </span>identity<span class="w"> </span>federated-credential<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">  </span>--name<span class="w"> </span>holmes-federated<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">  </span>--identity-name<span class="w"> </span>holmes-identity<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">  </span>--resource-group<span class="w"> </span>&lt;rg&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">  </span>--issuer<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OIDC_ISSUER</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">  </span>--subject<span class="w"> </span><span class="s2">&quot;system:serviceaccount:&lt;namespace&gt;:holmes&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">  </span>--audiences<span class="w"> </span><span class="s2">&quot;api://AzureADTokenExchange&quot;</span>
+</span></code></pre></div>
+<p><strong>Configure Helm Values:</strong></p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># values.yaml</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">additionalEnvVars</span><span class="p">:</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AZURE_AD_TOKEN_AUTH</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AZURE_CLIENT_ID</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;managed-identity-client-id&gt;&quot;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AZURE_TENANT_ID</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;tenant-id&gt;&quot;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nt">serviceAccount</span><span class="p">:</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span><span class="nt">azure.workload.identity/client-id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;managed-identity-client-id&gt;&quot;</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="nt">podLabels</span><span class="p">:</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">  </span><span class="nt">azure.workload.identity/use</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="nt">modelList</span><span class="p">:</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">  </span><span class="nt">azure-gpt-41</span><span class="p">:</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/gpt-4.1</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w">    </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://your-resource.openai.azure.com/</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">    </span><span class="nt">api_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01-preview&quot;</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w">    </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="w">  </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure-gpt-41&quot;</span>
+</span></code></pre></div>
+<p>Note that <code>api_key</code> is omitted from the <code>modelList</code> entries — authentication is handled entirely by the workload identity token.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Configure Helm Values:</strong></p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># values.yaml</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">holmes</span><span class="p">:</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">additionalEnvVars</span><span class="p">:</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AZURE_AD_TOKEN_AUTH</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AZURE_CLIENT_ID</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;managed-identity-client-id&gt;&quot;</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AZURE_TENANT_ID</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;tenant-id&gt;&quot;</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">  </span><span class="nt">serviceAccount</span><span class="p">:</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">azure.workload.identity/client-id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;managed-identity-client-id&gt;&quot;</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">  </span><span class="nt">podLabels</span><span class="p">:</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">    </span><span class="nt">azure.workload.identity/use</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">  </span><span class="nt">modelList</span><span class="p">:</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">    </span><span class="nt">azure-gpt-41</span><span class="p">:</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure/gpt-4.1</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">      </span><span class="nt">api_base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://your-resource.openai.azure.com/</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">      </span><span class="nt">api_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-01-01-preview&quot;</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">      </span><span class="nt">temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;azure-gpt-41&quot;</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Verify the pod has workload identity labels and env vars injected</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>holmes<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A5<span class="w"> </span><span class="s2">&quot;AZURE_&quot;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Test that the identity can obtain a token (from inside the pod)</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>deploy/holmes<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="s2">from azure.identity import DefaultAzureCredential</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="s2">token = DefaultAzureCredential().get_token(&#39;https://cognitiveservices.azure.com/.default&#39;)</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="s2">print(&#39;Token obtained, expires at:&#39;, token.expires_on)</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="s2">&quot;</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="c1"># Check role assignment</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>az<span class="w"> </span>role<span class="w"> </span>assignment<span class="w"> </span>list<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">  </span>--assignee<span class="w"> </span><span class="s2">&quot;&lt;identity-principal-id&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">  </span>--scope<span class="w"> </span><span class="s2">&quot;/subscriptions/&lt;sub&gt;/resourceGroups/&lt;rg&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;resource&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">  </span>--output<span class="w"> </span>table
+</span></code></pre></div>
 <h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
-<p>HolmesGPT uses the LiteLLM API to support Azure OpenAI provider. For advanced authentication methods (Azure AD, Managed Identity, Workload Identity, Service Principal), refer to:</p>
 <ul>
 <li><a href="https://litellm.vercel.app/docs/providers/azure" target="_blank">LiteLLM Azure OpenAI docs</a></li>
-<li><a href="https://docs.litellm.ai/docs/oidc" target="_blank">LiteLLM OIDC docs</a> - For Workload Identity and Managed Identity authentication</li>
-<li><a href="https://github.com/BerriAI/litellm/pull/3861" target="_blank">LiteLLM Azure AD Token support (PR #3861)</a> - AKS Workload Identity OIDC support</li>
-<li><a href="https://github.com/BerriAI/litellm/pull/5131" target="_blank">LiteLLM Azure Service Principal (PR #5131)</a> - Service Principal with client credentials</li>
+<li><a href="https://docs.azure.cn/en-us/ai-services/disable-local-auth" target="_blank">Disable local authentication in Azure AI Services</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/role-based-access-control" target="_blank">Cognitive Services OpenAI User role</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview" target="_blank">AKS Workload Identity overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/python/api/azure-identity/azure.identity.defaultazurecredential" target="_blank">DefaultAzureCredential documentation</a></li>
 </ul>
 
 
