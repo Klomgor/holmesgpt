@@ -1880,6 +1880,8 @@
       
         
       
+        
+      
     
     
     
@@ -2728,6 +2730,34 @@
     
   
     MariaDB (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../builtin-toolsets/mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MongoDB
   
 
     
@@ -4549,7 +4579,7 @@
 <p>After installing HolmesGPT and running your first investigation, connect your data sources so Holmes can perform deeper investigations.</p>
 <h2 id="how-holmes-works">How Holmes Works<a class="headerlink" href="#how-holmes-works" title="Permanent link">&para;</a></h2>
 <p>HolmesGPT is an AI troubleshooting agent that investigates issues by pulling data from your existing observability stack. The more data sources you connect, the more thoroughly Holmes can investigate — correlating metrics with logs, tracing infrastructure changes to application failures, and building a complete picture of what went wrong.</p>
-<p>Holmes works across cloud, on-premise, and hybrid environments. If you use Kubernetes, the Kubernetes toolsets are enabled automatically. Everything else — metrics, logs, cloud APIs, databases — is configured through toolsets you enable based on your stack.</p>
+<p>Holmes works across cloud, on-premise, and hybrid environments. If you use Kubernetes, the Kubernetes toolsets are enabled automatically. But Kubernetes is not required — Holmes works equally well with Prometheus, Datadog, Elasticsearch, AWS, GCP, databases, and <a href="../builtin-toolsets/">many other data sources</a>. Configure the toolsets that match your stack.</p>
 <h2 id="1-connect-a-metrics-provider">1. Connect a Metrics Provider<a class="headerlink" href="#1-connect-a-metrics-provider" title="Permanent link">&para;</a></h2>
 <p>Metrics give Holmes visibility into trends over time. Without metrics, Holmes can still investigate using logs and infrastructure state, but it won't be able to spot gradual degradation or correlate historical information as well. Metrics are also critical to answering numerical questions, like 'what is the error rate for service xyz?'</p>
 <p>Connect whichever metrics platform you already use:</p>
@@ -4587,13 +4617,13 @@
 <p><strong>Quick example</strong> (Prometheus):</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d_1" name="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d" type="radio">
-<input id="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d_2" name="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d" type="radio">
-<input id="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d_3" name="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d" type="radio">
+<input checked="checked" id="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736_1" name="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736" type="radio">
+<input id="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736_2" name="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736" type="radio">
+<input id="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736_3" name="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d_1">Holmes CLI</label>
-<label for="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d_2">Holmes Helm Chart</label>
-<label for="__tabbed_e4db3374_20eb_4a9e_ad96_6dd99bb8128d_3">Robusta Helm Chart</label>
+<label for="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736_1">Holmes CLI</label>
+<label for="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736_2">Holmes Helm Chart</label>
+<label for="__tabbed_ce024edf_ebe8_4910_9d8d_1cd57e9ea736_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4663,13 +4693,13 @@
 <p><strong>Quick example</strong> (Loki via Grafana):</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4_1" name="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4" type="radio">
-<input id="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4_2" name="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4" type="radio">
-<input id="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4_3" name="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4" type="radio">
+<input checked="checked" id="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9_1" name="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9" type="radio">
+<input id="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9_2" name="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9" type="radio">
+<input id="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9_3" name="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4_1">Holmes CLI</label>
-<label for="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4_2">Holmes Helm Chart</label>
-<label for="__tabbed_417ebbbb_fade_4380_b746_1e5aa42e5ff4_3">Robusta Helm Chart</label>
+<label for="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9_1">Holmes CLI</label>
+<label for="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9_2">Holmes Helm Chart</label>
+<label for="__tabbed_9e81774e_6e93_418c_88a8_d35e93ed7be9_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">

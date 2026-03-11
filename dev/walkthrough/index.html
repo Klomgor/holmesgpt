@@ -1756,6 +1756,8 @@
       
         
       
+        
+      
     
     
     
@@ -2604,6 +2606,34 @@
     
   
     MariaDB (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-sources/builtin-toolsets/mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MongoDB
   
 
     
@@ -4297,17 +4327,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#clean-up" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Clean Up
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4406,64 +4425,19 @@
 <ul>
 <li>✅ <strong>HolmesGPT CLI installed</strong> - See <a href="../installation/cli-installation/">CLI Installation Guide</a></li>
 <li>✅ <strong>AI provider API key configured</strong> - See <a href="../ai-providers/">AI Provider Setup</a></li>
-<li>✅ <strong>kubectl access to a Kubernetes cluster</strong> - Any cluster will work</li>
 </ul>
 <h2 id="run-your-first-investigation">Run Your First Investigation<a class="headerlink" href="#run-your-first-investigation" title="Permanent link">&para;</a></h2>
-<p>Let's investigate a pod with HolmesGPT to see the value it provides:</p>
-<ol>
-<li>
-<p><strong>Create a test pod with an issue:</strong>
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>Ask Holmes to investigate:</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="run-your-first-investigation-openai-default" name="__tabbed_1" type="radio" /><input id="run-your-first-investigation-azure-openai" name="__tabbed_1" type="radio" /><input id="run-your-first-investigation-anthropic-claude" name="__tabbed_1" type="radio" /><input id="run-your-first-investigation-google-gemini" name="__tabbed_1" type="radio" /><input id="run-your-first-investigation-aws-bedrock" name="__tabbed_1" type="radio" /><input id="run-your-first-investigation-ollama" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="run-your-first-investigation-openai-default">OpenAI (Default)</label><label for="run-your-first-investigation-azure-openai">Azure OpenAI</label><label for="run-your-first-investigation-anthropic-claude">Anthropic Claude</label><label for="run-your-first-investigation-google-gemini">Google Gemini</label><label for="run-your-first-investigation-aws-bedrock">AWS Bedrock</label><label for="run-your-first-investigation-ollama">Ollama</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;describe the user-profile-import pod and explain any issues&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;tell me something surprising about my environment&quot;</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;describe the user-profile-import pod and explain any issues&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;azure/&lt;your-model-name&gt;&quot;</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;describe the user-profile-import pod and explain any issues&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;anthropic/&lt;your-model-name&gt;&quot;</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;describe the user-profile-import pod and explain any issues&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;gemini/&lt;your-model-name&gt;&quot;</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;describe the user-profile-import pod and explain any issues&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;bedrock/&lt;your-model-name&gt;&quot;</span>
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;describe the user-profile-import pod and explain any issues&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;ollama_chat/&lt;your-model-name&gt;&quot;</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p><strong>See the value:</strong></p>
-<p>Holmes will analyze the pod, identify that it's stuck in "Pending" state due to an invalid node selector, and suggest specific remediation steps - all without you needing to manually run <code>kubectl describe</code>, check events, or dig through logs.</p>
-</li>
-</ol>
+<p>Holmes will automatically discover your connected <a href="../data-sources/builtin-toolsets/">data sources</a> — Kubernetes, Prometheus, Datadog, Elasticsearch, AWS, GCP, databases, and more — and report back on what it finds.</p>
 <h2 id="what-you-just-experienced">What You Just Experienced<a class="headerlink" href="#what-you-just-experienced" title="Permanent link">&para;</a></h2>
 <p>HolmesGPT automatically:</p>
 <ul>
-<li>✅ <strong>Gathered context</strong> - Retrieved pod status, events, and related information</li>
-<li>✅ <strong>Identified the root cause</strong> - Invalid node selector preventing scheduling</li>
-<li>✅ <strong>Provided actionable solutions</strong> - Specific commands to fix the issue</li>
+<li>✅ <strong>Gathered context</strong> - Retrieved relevant data from your observability stack</li>
+<li>✅ <strong>Identified the root cause</strong> - Pinpointed the underlying issue</li>
+<li>✅ <strong>Provided actionable solutions</strong> - Specific steps to fix the problem</li>
 <li>✅ <strong>Saved investigation time</strong> - No manual troubleshooting steps required</li>
 </ul>
-<h2 id="clean-up">Clean Up<a class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h2>
-<p>Remove the test pod:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>user-profile-import
-</span></code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><a href="../data-sources/recommended-setup/">Recommended Setup</a></strong> - Connect metrics, logs, and cloud providers to unlock deeper investigations</li>

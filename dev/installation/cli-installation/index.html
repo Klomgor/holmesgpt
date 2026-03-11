@@ -1858,6 +1858,8 @@
       
         
       
+        
+      
     
     
     
@@ -2706,6 +2708,34 @@
     
   
     MariaDB (MCP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-sources/builtin-toolsets/mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MongoDB
   
 
     
@@ -4598,23 +4628,32 @@
 <p class="admonition-title">Which Model to Use</p>
 <p>We highly recommend using Sonnet 4.0 or Sonnet 4.5 as they give the best results by far. These models are available from Anthropic, AWS Bedrock, and Google Vertex. <a href="../../development/evaluations/">View Benchmarks.</a></p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">No Kubernetes Required</p>
+<p>The examples below use a Kubernetes pod for a quick guided demo, but HolmesGPT works with any infrastructure. If you don't use Kubernetes, skip the <code>kubectl apply</code> step and ask about your own systems instead:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what Prometheus alerts are currently firing and why?&quot;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is the health of my Elasticsearch cluster?&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;are there any issues with my production databases?&quot;</span>
+</span></code></pre></div>
+See <a href="../../data-sources/builtin-toolsets/">data sources</a> for all supported integrations.</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:7"><input checked="checked" id="quick-start-anthropic-claude" name="__tabbed_2" type="radio" /><input id="quick-start-openai" name="__tabbed_2" type="radio" /><input id="quick-start-azure-openai" name="__tabbed_2" type="radio" /><input id="quick-start-aws-bedrock" name="__tabbed_2" type="radio" /><input id="quick-start-google-gemini" name="__tabbed_2" type="radio" /><input id="quick-start-google-vertex-ai" name="__tabbed_2" type="radio" /><input id="quick-start-ollama" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="quick-start-anthropic-claude">Anthropic Claude</label><label for="quick-start-openai">OpenAI</label><label for="quick-start-azure-openai">Azure OpenAI</label><label for="quick-start-aws-bedrock">AWS Bedrock</label><label for="quick-start-google-gemini">Google Gemini</label><label for="quick-start-google-vertex-ai">Google Vertex AI</label><label for="quick-start-ollama">Ollama</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ol>
 <li>
 <p><strong>Set up API key</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;anthropic/claude-sonnet-4-5-20250929&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;anthropic/claude-sonnet-4-5-20250929&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ol>
@@ -4625,21 +4664,21 @@
 <ol>
 <li>
 <p><strong>Set up API key</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Uses gpt-4.1 by default (fairly fast, decent results)</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># Or specify a different model</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;gpt-5&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Uses gpt-4.1 by default (fairly fast, decent results)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Or specify a different model</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;gpt-5&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ol>
@@ -4649,19 +4688,19 @@
 <ol>
 <li>
 <p><strong>Set up API key</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_VERSION</span><span class="o">=</span><span class="s2">&quot;2024-02-15-preview&quot;</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_BASE</span><span class="o">=</span><span class="s2">&quot;https://your-resource.openai.azure.com&quot;</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-azure-api-key&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_VERSION</span><span class="o">=</span><span class="s2">&quot;2024-02-15-preview&quot;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_BASE</span><span class="o">=</span><span class="s2">&quot;https://your-resource.openai.azure.com&quot;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AZURE_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-azure-api-key&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;azure/&lt;your-model-name&gt;&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;azure/&lt;your-model-name&gt;&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ol>
@@ -4671,28 +4710,28 @@
 <ol>
 <li>
 <p><strong>Set up API key</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;your-access-key&quot;</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;your-secret-key&quot;</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">&quot;your-region&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span><span class="s2">&quot;your-access-key&quot;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span><span class="s2">&quot;your-secret-key&quot;</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="s2">&quot;your-region&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Install boto3</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;boto3&gt;=1.28.57&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;boto3&gt;=1.28.57&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Recommended: Use Sonnet 4.0 or Sonnet 4.5 for best results</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;bedrock/anthropic.claude-sonnet-4-20250514-v1:0&quot;</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Or use another model</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;bedrock/&lt;your-model-name&gt;&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Recommended: Use Sonnet 4.0 or Sonnet 4.5 for best results</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;bedrock/anthropic.claude-sonnet-4-20250514-v1:0&quot;</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Or use another model</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;bedrock/&lt;your-model-name&gt;&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ol>
@@ -4702,17 +4741,17 @@
 <ol>
 <li>
 <p><strong>Set up API key</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-gemini-api-key&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your-gemini-api-key&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;gemini/&lt;your-gemini-model&gt;&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;gemini/&lt;your-gemini-model&gt;&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ol>
@@ -4722,19 +4761,19 @@
 <ol>
 <li>
 <p><strong>Set up credentials</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VERTEXAI_PROJECT</span><span class="o">=</span><span class="s2">&quot;your-project-id&quot;</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VERTEXAI_LOCATION</span><span class="o">=</span><span class="s2">&quot;us-central1&quot;</span>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;path/to/service-account-key.json&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VERTEXAI_PROJECT</span><span class="o">=</span><span class="s2">&quot;your-project-id&quot;</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VERTEXAI_LOCATION</span><span class="o">=</span><span class="s2">&quot;us-central1&quot;</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;path/to/service-account-key.json&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;vertex_ai/&lt;your-vertex-model&gt;&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;vertex_ai/&lt;your-vertex-model&gt;&quot;</span>
 </span></code></pre></div></p>
 </li>
 </ol>
@@ -4748,12 +4787,12 @@
 </li>
 <li>
 <p><strong>Create a test pod</strong> to investigate:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://raw.githubusercontent.com/robusta-dev/kubernetes-demos/main/pending_pods/pending_pod_node_selector.yaml
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Ask your first question</strong>:
-    <div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;ollama_chat/&lt;your-model-name&gt;&quot;</span>
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>holmes<span class="w"> </span>ask<span class="w"> </span><span class="s2">&quot;what is wrong with the user-profile-import pod?&quot;</span><span class="w"> </span>--model<span class="o">=</span><span class="s2">&quot;ollama_chat/&lt;your-model-name&gt;&quot;</span>
 </span></code></pre></div></p>
 <p>For troubleshooting and advanced options, see <a href="../../ai-providers/ollama/">Ollama Configuration</a>.</p>
 </li>
