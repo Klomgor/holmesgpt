@@ -5721,13 +5721,13 @@
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1_1" name="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1" type="radio">
-<input id="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1_2" name="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1" type="radio">
-<input id="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1_3" name="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1" type="radio">
+<input checked="checked" id="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2_1" name="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2" type="radio">
+<input id="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2_2" name="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2" type="radio">
+<input id="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2_3" name="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1_1">Holmes CLI</label>
-<label for="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1_2">Holmes Helm Chart</label>
-<label for="__tabbed_fe16e9d4_7dee_42d1_b8d3_5584cde17dc1_3">Robusta Helm Chart</label>
+<label for="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2_1">Holmes CLI</label>
+<label for="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2_2">Holmes Helm Chart</label>
+<label for="__tabbed_3cbfbdb3_d178_4aaa_8d69_448ae7662ad2_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5754,7 +5754,7 @@
           password: &lt;password&gt;
           api_url: &lt;http://rabbitmq.rabbitmq:15672&gt;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>

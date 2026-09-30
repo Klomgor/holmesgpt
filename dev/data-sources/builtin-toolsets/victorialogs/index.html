@@ -5825,13 +5825,13 @@
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0_1" name="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0" type="radio">
-<input id="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0_2" name="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0" type="radio">
-<input id="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0_3" name="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0" type="radio">
+<input checked="checked" id="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7_1" name="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7" type="radio">
+<input id="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7_2" name="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7" type="radio">
+<input id="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7_3" name="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0_1">Holmes CLI</label>
-<label for="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0_2">Holmes Helm Chart</label>
-<label for="__tabbed_d4413d5b_b7d1_4855_b20f_859e0a3b57e0_3">Robusta Helm Chart</label>
+<label for="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7_1">Holmes CLI</label>
+<label for="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7_2">Holmes Helm Chart</label>
+<label for="__tabbed_8309cbfe_c3cd_4a59_9420_9d713bf10eb7_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5850,7 +5850,7 @@
     config:
       api_url: http://victorialogs.monitoring.svc:9428</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -5870,13 +5870,13 @@
 <p><strong>Basic auth:</strong></p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c_1" name="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c" type="radio">
-<input id="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c_2" name="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c" type="radio">
-<input id="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c_3" name="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c" type="radio">
+<input checked="checked" id="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a_1" name="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a" type="radio">
+<input id="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a_2" name="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a" type="radio">
+<input id="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a_3" name="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c_1">Holmes CLI</label>
-<label for="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c_2">Holmes Helm Chart</label>
-<label for="__tabbed_b164e1e3_5b61_4cbc_97dc_cb01da91b81c_3">Robusta Helm Chart</label>
+<label for="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a_1">Holmes CLI</label>
+<label for="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a_2">Holmes Helm Chart</label>
+<label for="__tabbed_3c8b5fcf_b4b2_4ae5_9423_826cf0d1fb8a_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5899,7 +5899,7 @@
       username: holmes
       password: &quot;{{ env.VICTORIALOGS_PASSWORD }}&quot;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -5919,13 +5919,13 @@
 <p><strong>Bearer token:</strong></p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d_1" name="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d" type="radio">
-<input id="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d_2" name="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d" type="radio">
-<input id="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d_3" name="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d" type="radio">
+<input checked="checked" id="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702_1" name="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702" type="radio">
+<input id="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702_2" name="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702" type="radio">
+<input id="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702_3" name="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d_1">Holmes CLI</label>
-<label for="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d_2">Holmes Helm Chart</label>
-<label for="__tabbed_a10abff5_fad7_4d81_8a2c_9f400596378d_3">Robusta Helm Chart</label>
+<label for="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702_1">Holmes CLI</label>
+<label for="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702_2">Holmes Helm Chart</label>
+<label for="__tabbed_c5dd19b4_81ed_4f33_a0f2_c0b805ba8702_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5946,7 +5946,7 @@
       api_url: https://victorialogs.example.com
       bearer_token: &quot;{{ env.VICTORIALOGS_TOKEN }}&quot;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -5966,13 +5966,13 @@
 <p>VictoriaLogs uses <code>AccountID</code> and <code>ProjectID</code> headers for tenant routing. Set them via <code>headers</code>:</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55_1" name="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55" type="radio">
-<input id="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55_2" name="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55" type="radio">
-<input id="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55_3" name="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55" type="radio">
+<input checked="checked" id="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143_1" name="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143" type="radio">
+<input id="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143_2" name="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143" type="radio">
+<input id="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143_3" name="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55_1">Holmes CLI</label>
-<label for="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55_2">Holmes Helm Chart</label>
-<label for="__tabbed_5475db51_3cf2_4459_8edd_942d860aad55_3">Robusta Helm Chart</label>
+<label for="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143_1">Holmes CLI</label>
+<label for="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143_2">Holmes Helm Chart</label>
+<label for="__tabbed_d90b5bc3_aa21_4254_a9a1_074cd51a3143_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5997,7 +5997,7 @@
         AccountID: &quot;0&quot;
         ProjectID: &quot;0&quot;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -6019,13 +6019,13 @@
 <p>If HolmesGPT calls an internal API URL but you want results to link to a public dashboard:</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d_1" name="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d" type="radio">
-<input id="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d_2" name="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d" type="radio">
-<input id="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d_3" name="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d" type="radio">
+<input checked="checked" id="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452_1" name="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452" type="radio">
+<input id="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452_2" name="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452" type="radio">
+<input id="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452_3" name="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d_1">Holmes CLI</label>
-<label for="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d_2">Holmes Helm Chart</label>
-<label for="__tabbed_558ef3fc_4f5d_4f55_a8fb_b0133b8edc1d_3">Robusta Helm Chart</label>
+<label for="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452_1">Holmes CLI</label>
+<label for="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452_2">Holmes Helm Chart</label>
+<label for="__tabbed_1ca6045a_2673_4cd5_83ce_0624bd0f4452_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6046,7 +6046,7 @@
       api_url: http://victorialogs.internal:9428
       external_url: https://logs.example.com</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>

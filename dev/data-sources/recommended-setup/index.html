@@ -5831,13 +5831,13 @@
 <p><strong>Quick example</strong> (Prometheus):</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010_1" name="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010" type="radio">
-<input id="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010_2" name="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010" type="radio">
-<input id="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010_3" name="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010" type="radio">
+<input checked="checked" id="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745_1" name="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745" type="radio">
+<input id="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745_2" name="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745" type="radio">
+<input id="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745_3" name="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010_1">Holmes CLI</label>
-<label for="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010_2">Holmes Helm Chart</label>
-<label for="__tabbed_5a94c3c4_12df_45bf_a148_8149ca056010_3">Robusta Helm Chart</label>
+<label for="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745_1">Holmes CLI</label>
+<label for="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745_2">Holmes Helm Chart</label>
+<label for="__tabbed_8d7cd6e1_0693_41a9_9381_daaf0f766745_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5856,7 +5856,7 @@
     config:
       prometheus_url: http://prometheus-server.monitoring:9090</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -5907,13 +5907,13 @@
 <p><strong>Quick example</strong> (Loki via Grafana):</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09_1" name="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09" type="radio">
-<input id="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09_2" name="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09" type="radio">
-<input id="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09_3" name="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09" type="radio">
+<input checked="checked" id="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8_1" name="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8" type="radio">
+<input id="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8_2" name="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8" type="radio">
+<input id="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8_3" name="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09_1">Holmes CLI</label>
-<label for="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09_2">Holmes Helm Chart</label>
-<label for="__tabbed_3f9f92b5_55fb_42c1_9e31_18c445866a09_3">Robusta Helm Chart</label>
+<label for="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8_1">Holmes CLI</label>
+<label for="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8_2">Holmes Helm Chart</label>
+<label for="__tabbed_3bc1d94d_0cd7_4ff1_8831_b36fd5610fd8_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5936,7 +5936,7 @@
       api_url: https://your-grafana.net
       grafana_datasource_uid: &lt;loki-datasource-uid&gt;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>

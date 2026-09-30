@@ -5941,13 +5941,13 @@
 </span></code></pre></div>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6_1" name="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6" type="radio">
-<input id="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6_2" name="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6" type="radio">
-<input id="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6_3" name="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6" type="radio">
+<input checked="checked" id="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2_1" name="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2" type="radio">
+<input id="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2_2" name="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2" type="radio">
+<input id="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2_3" name="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6_1">Holmes CLI</label>
-<label for="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6_2">Holmes Helm Chart</label>
-<label for="__tabbed_bc40716c_5455_4c31_a720_ebbfd62cf9d6_3">Robusta Helm Chart</label>
+<label for="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2_1">Holmes CLI</label>
+<label for="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2_2">Holmes Helm Chart</label>
+<label for="__tabbed_b3ec409d_459a_4e86_a539_0a4554106ef2_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5970,7 +5970,7 @@
       api_key: &lt;your grafana API key&gt;
       grafana_datasource_uid: &lt;the UID of the loki data source in Grafana&gt;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -5991,13 +5991,13 @@
 <p>HolmesGPT connects directly to a self-hosted Loki API endpoint without going through Grafana.</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707_1" name="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707" type="radio">
-<input id="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707_2" name="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707" type="radio">
-<input id="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707_3" name="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707" type="radio">
+<input checked="checked" id="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec_1" name="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec" type="radio">
+<input id="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec_2" name="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec" type="radio">
+<input id="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec_3" name="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707_1">Holmes CLI</label>
-<label for="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707_2">Holmes Helm Chart</label>
-<label for="__tabbed_1c0c0ed4_fbc0_4439_81f2_86f7336aa707_3">Robusta Helm Chart</label>
+<label for="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec_1">Holmes CLI</label>
+<label for="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec_2">Holmes Helm Chart</label>
+<label for="__tabbed_6e9457cc_d9dc_4c1a_bc9b_8b44c84c17ec_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6020,7 +6020,7 @@
       additional_headers:
         X-Scope-OrgID: &quot;&lt;tenant id&gt;&quot;  # Only needed for multi-tenant Loki</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -6051,13 +6051,13 @@
 </span></code></pre></div>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902_1" name="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902" type="radio">
-<input id="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902_2" name="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902" type="radio">
-<input id="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902_3" name="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902" type="radio">
+<input checked="checked" id="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d_1" name="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d" type="radio">
+<input id="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d_2" name="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d" type="radio">
+<input id="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d_3" name="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902_1">Holmes CLI</label>
-<label for="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902_2">Holmes Helm Chart</label>
-<label for="__tabbed_b5c1bf6c_c5e7_4d08_b4db_ae2ab9f66902_3">Robusta Helm Chart</label>
+<label for="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d_1">Holmes CLI</label>
+<label for="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d_2">Holmes Helm Chart</label>
+<label for="__tabbed_ef3ff311_460d_45ad_b840_0898e791449d_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6080,7 +6080,7 @@
       api_key: &lt;grafana cloud service account token&gt;
       grafana_datasource_uid: &lt;the UID of the Loki datasource&gt;</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -6120,13 +6120,13 @@
 <p>For self-signed certificates, you can disable SSL verification:</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93_1" name="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93" type="radio">
-<input id="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93_2" name="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93" type="radio">
-<input id="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93_3" name="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93" type="radio">
+<input checked="checked" id="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e_1" name="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e" type="radio">
+<input id="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e_2" name="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e" type="radio">
+<input id="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e_3" name="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93_1">Holmes CLI</label>
-<label for="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93_2">Holmes Helm Chart</label>
-<label for="__tabbed_b779c6e0_2e68_45a3_894d_dd3599953b93_3">Robusta Helm Chart</label>
+<label for="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e_1">Holmes CLI</label>
+<label for="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e_2">Holmes Helm Chart</label>
+<label for="__tabbed_73b2de4b_e962_4ea6_bd87_7893faeae51e_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6147,7 +6147,7 @@
       api_url: https://loki.internal
       verify_ssl: false  # Disable SSL verification (default: true)</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
@@ -6167,13 +6167,13 @@
 <p>Only applies to the <strong>Self-Hosted Loki via Grafana Proxy</strong> setup. If HolmesGPT reaches Grafana through an internal URL but you want the clickable "View in Grafana" links in responses to use a public URL:</p>
 <p>
 <div class="tabbed-set" data-tabs="1:3">
-<input checked="checked" id="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810_1" name="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810" type="radio">
-<input id="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810_2" name="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810" type="radio">
-<input id="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810_3" name="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810" type="radio">
+<input checked="checked" id="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22_1" name="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22" type="radio">
+<input id="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22_2" name="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22" type="radio">
+<input id="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22_3" name="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22" type="radio">
 <div class="tabbed-labels">
-<label for="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810_1">Holmes CLI</label>
-<label for="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810_2">Holmes Helm Chart</label>
-<label for="__tabbed_eecf9511_f008_4f22_8ff3_b25ca5475810_3">Robusta Helm Chart</label>
+<label for="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22_1">Holmes CLI</label>
+<label for="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22_2">Holmes Helm Chart</label>
+<label for="__tabbed_bdd3d629_78c0_4069_8ce2_965caa31ab22_3">Robusta Helm Chart</label>
 </div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6198,7 +6198,7 @@
       grafana_datasource_uid: &lt;loki datasource UID&gt;
       external_url: https://grafana.example.com  # URL used in clickable links</code></pre>
 <p>Apply the configuration:</p>
-<pre><code class="language-bash">helm upgrade holmes holmes/holmes --values=values.yaml</code></pre>
+<pre><code class="language-bash">helm upgrade holmes robusta/holmes --values=values.yaml</code></pre>
 </div>
 <div class="tabbed-block">
 <p>When using the <strong>Robusta Helm Chart</strong> (which includes HolmesGPT), update your <code>generated_values.yaml</code>:</p>
